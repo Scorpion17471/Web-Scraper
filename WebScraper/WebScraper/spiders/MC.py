@@ -1,6 +1,6 @@
 import scrapy
 
-from WebScraper.items import WebscraperItem
+from WebScraper.items import MCItem
 
 class McSpider(scrapy.Spider):
     name = "MC"
@@ -8,8 +8,8 @@ class McSpider(scrapy.Spider):
     start_urls = ["https://www.microcenter.com/category/4294966661/headphones-and-earbuds"]
 
     def parse(self, response):
-        for product in response.css("li.product_wrapper"):
-            item = WebscraperItem()
+        for product in response.css("div::attr(role='listitem')"):
+            item = MCItem()
             # Direct Product URL
             item["url"] = response.urljoin(product.css("div.result_left > a.image2::attr(href)").get())
             # Product Name as Listed
