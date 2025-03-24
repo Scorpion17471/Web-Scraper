@@ -15,6 +15,7 @@ class MCItem(scrapy.Item):
     stock = scrapy.Field() # Current inventory count (Scraper is only looking for in stock items right now)
 
 class AMZItem(scrapy.Item):
+    _id = scrapy.Field() # Unique MongoDB ID
     url = scrapy.Field() # Direct Product URL
     name = scrapy.Field() # Product Name as Listed
     current_price = scrapy.Field() # Current Price/Regular Price if not on sale
